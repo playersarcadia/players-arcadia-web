@@ -13,7 +13,10 @@ export default function JoinCTA() {
           <h2 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-8 leading-tight">
             Join PlayersArcadia Today!
           </h2>
-          <button className="bg-gradient-to-r from-[#d4af37] to-[#b8941f] text-white px-10 py-4 rounded-lg font-semibold text-lg md:text-xl hover:from-[#e5c047] hover:to-[#c9a429] transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105">
+          <button 
+            className="bg-gradient-to-r from-[#d4af37] to-[#b8941f] text-white px-10 py-4 rounded-lg font-semibold text-lg md:text-xl hover:from-[#e5c047] hover:to-[#c9a429] transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#d4af37] focus:ring-offset-2 focus:ring-offset-transparent"
+            aria-label="Download Players Arcadia mobile app"
+          >
             Download App
           </button>
         </div>

@@ -24,12 +24,13 @@ export default function Header() {
           <Logo />
 
           {/* Navigation Links - Desktop */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-8" aria-label="Main navigation">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-white hover:text-[#d4af37] transition-colors duration-200 text-sm font-medium"
+                className="text-white hover:text-[#d4af37] transition-colors duration-200 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#d4af37] focus:ring-offset-2 focus:ring-offset-[#082C73] rounded px-2 py-1"
+                aria-label={`Navigate to ${link.label}`}
               >
                 {link.label}
               </Link>
@@ -38,7 +39,10 @@ export default function Header() {
 
           {/* Download App Button */}
           <div className="flex items-center gap-4">
-            <button className="bg-gradient-to-r from-[#d4af37] to-[#b8941f] text-white px-6 py-2.5 rounded-md font-semibold text-sm hover:from-[#e5c047] hover:to-[#c9a429] transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105">
+            <button 
+              className="bg-gradient-to-r from-[#d4af37] to-[#b8941f] text-white px-6 py-2.5 rounded-md font-semibold text-sm hover:from-[#e5c047] hover:to-[#c9a429] transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#d4af37] focus:ring-offset-2 focus:ring-offset-[#082C73]"
+              aria-label="Download Players Arcadia mobile app"
+            >
               Download app
             </button>
 
@@ -82,14 +86,17 @@ export default function Header() {
           className={`md:hidden pb-4 transition-all duration-300 ease-in-out ${
             isMobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0 overflow-hidden"
           }`}
+          aria-label="Mobile navigation"
+          aria-hidden={!isMobileMenuOpen}
         >
           <div className="flex flex-col gap-4 pt-4">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-white hover:text-[#d4af37] transition-colors duration-200 text-sm font-medium py-2"
+                className="text-white hover:text-[#d4af37] transition-colors duration-200 text-sm font-medium py-2 focus:outline-none focus:ring-2 focus:ring-[#d4af37] focus:ring-offset-2 focus:ring-offset-[#082C73] rounded px-2"
                 onClick={() => setIsMobileMenuOpen(false)}
+                aria-label={`Navigate to ${link.label}`}
               >
                 {link.label}
               </Link>

@@ -86,7 +86,8 @@ export default function Footer() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="text-gray-600 hover:text-[#082C73] transition-colors text-sm"
+                  className="text-gray-600 hover:text-[#082C73] transition-colors text-sm focus:outline-none focus:ring-2 focus:ring-[#082C73] focus:ring-offset-2 focus:ring-offset-white rounded px-1"
+                  aria-label={link.label}
                 >
                   {link.label}
                 </Link>
@@ -103,7 +104,8 @@ export default function Footer() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="text-gray-600 hover:text-[#082C73] transition-colors text-sm"
+                  className="text-gray-600 hover:text-[#082C73] transition-colors text-sm focus:outline-none focus:ring-2 focus:ring-[#082C73] focus:ring-offset-2 focus:ring-offset-white rounded px-1"
+                  aria-label={link.label}
                 >
                   {link.label}
                 </Link>
@@ -120,8 +122,8 @@ export default function Footer() {
               <Link
                 key={social.name}
                 href={social.href}
-                className="text-gray-600 hover:text-[#082C73] transition-colors"
-                aria-label={social.name}
+                className="text-gray-600 hover:text-[#082C73] transition-all duration-200 transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-[#082C73] focus:ring-offset-2 focus:ring-offset-white rounded p-1"
+                aria-label={`Follow us on ${social.name}`}
               >
                 {social.icon}
               </Link>

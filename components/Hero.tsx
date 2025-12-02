@@ -80,7 +80,10 @@ export default function Hero() {
                       <p className="text-lg md:text-xl text-gray-200 mb-6">
                         {slide.description}
                       </p>
-                      <button className="bg-gradient-to-r from-[#d4af37] to-[#b8941f] text-white px-8 py-3 rounded-lg font-semibold text-base hover:from-[#e5c047] hover:to-[#c9a429] transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 w-fit">
+                      <button 
+                        className="bg-gradient-to-r from-[#d4af37] to-[#b8941f] text-white px-8 py-3 rounded-lg font-semibold text-base hover:from-[#e5c047] hover:to-[#c9a429] transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 w-fit focus:outline-none focus:ring-2 focus:ring-[#d4af37] focus:ring-offset-2 focus:ring-offset-transparent"
+                        aria-label="Register for tournament"
+                      >
                         Register Now
                       </button>
                     </div>

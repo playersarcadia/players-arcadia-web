@@ -138,7 +138,7 @@ export default function UpcomingTournaments() {
       >
         {tournaments.map((tournament) => (
           <SwiperSlide key={tournament.id}>
-            <div className="bg-[#082C73] rounded-2xl overflow-hidden border-2 border-white shadow-lg hover:shadow-xl transition-shadow">
+            <div className="bg-[#082C73] rounded-2xl overflow-hidden border-2 border-white shadow-lg hover:shadow-xl hover:border-[#d4af37] transition-all duration-300 transform hover:-translate-y-1">
               {/* Tournament Image */}
               <div className="relative h-48 md:h-56 bg-gradient-to-br from-gray-800 to-gray-900">
                 {/* Placeholder Background - Replace with actual image later */}
@@ -173,7 +173,10 @@ export default function UpcomingTournaments() {
                     Reward - <span className="text-[#d4af37] font-semibold">{tournament.reward}</span>
                   </p>
                 </div>
-                <button className="w-full bg-gradient-to-r from-[#d4af37] to-[#b8941f] text-white px-6 py-3 rounded-lg font-semibold text-sm md:text-base hover:from-[#e5c047] hover:to-[#c9a429] transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105">
+                <button 
+                  className="w-full bg-gradient-to-r from-[#d4af37] to-[#b8941f] text-white px-6 py-3 rounded-lg font-semibold text-sm md:text-base hover:from-[#e5c047] hover:to-[#c9a429] transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#d4af37] focus:ring-offset-2 focus:ring-offset-[#082C73]"
+                  aria-label={`Register for ${tournament.title}`}
+                >
                   Register Now
                 </button>
               </div>
