@@ -56,11 +56,11 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-white py-12 md:py-16 mt-12 md:mt-16">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+    <footer className="bg-white py-16 md:py-20 lg:py-24 mt-12 md:mt-16">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-16 lg:gap-20">
         {/* Column 1 - Logo and Description */}
-        <div className="px-6 md:px-0">
-          <div className="mb-6 p-4 md:p-6">
+        <div className="px-12 md:px-12 lg:px-12">
+          <div className="mb-4">
             <div className="flex items-center">
               <div className="relative flex items-center justify-center flex-shrink-0">
                 <Image
@@ -79,7 +79,7 @@ export default function Footer() {
         </div>
 
         {/* Column 2 - Quick Links */}
-        <div className="px-6 md:px-0">
+        <div className="px-6 md:px-4 lg:px-6">
           <h3 className="text-lg font-bold text-black mb-4 uppercase">Quick Links</h3>
           <ul className="space-y-2">
             {quickLinks.map((link) => (
@@ -96,7 +96,7 @@ export default function Footer() {
         </div>
 
         {/* Column 3 - Support */}
-        <div className="px-6 md:px-0">
+        <div className="px-6 md:px-4 lg:px-6">
           <h3 className="text-lg font-bold text-black mb-4 uppercase">Support</h3>
           <ul className="space-y-2">
             {supportLinks.map((link) => (
@@ -113,7 +113,7 @@ export default function Footer() {
         </div>
 
         {/* Column 4 - Community */}
-        <div className="px-6 md:px-0">
+        <div className="px-6 md:px-4 lg:px-6">
           <h3 className="text-lg font-bold text-black mb-4 uppercase">Community</h3>
           <div className="flex items-center gap-4">
             {socialLinks.map((social) => (
@@ -131,7 +131,7 @@ export default function Footer() {
       </div>
 
       {/* Copyright */}
-      <div className="mt-8 pt-8 border-t border-gray-200 text-center">
+      <div className="mt-12 md:mt-16 pt-8 md:pt-12 border-t border-gray-200 text-center px-8 md:px-4 lg:px-6">
         <p className="text-gray-600 text-sm">
           © {new Date().getFullYear()} Players Arcadia. All rights reserved.
         </p>
