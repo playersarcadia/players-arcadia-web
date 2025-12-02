@@ -2,10 +2,12 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import Logo from "./Logo";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   const navLinks = [
     { label: "Home", href: "/" },
@@ -25,16 +27,27 @@ export default function Header() {
 
           {/* Navigation Links - Desktop */}
           <nav className="hidden md:flex items-center gap-8" aria-label="Main navigation">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-white hover:text-[#d4af37] transition-colors duration-200 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-[#d4af37] focus:ring-offset-2 focus:ring-offset-[#082C73] rounded px-2 py-1"
-                aria-label={`Navigate to ${link.label}`}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`relative transition-all duration-200 text-sm font-medium focus:outline-none rounded px-3 py-2 ${
+                    isActive
+                      ? "text-[#d4af37] font-semibold"
+                      : "text-white hover:text-[#d4af37]"
+                  }`}
+                  aria-label={`Navigate to ${link.label}`}
+                  aria-current={isActive ? "page" : undefined}
+                >
+                  {link.label}
+                  {isActive && (
+                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#d4af37] rounded-full"></span>
+                  )}
+                </Link>
+              );
+            })}
           </nav>
 
           {/* Download App Button */}
@@ -90,17 +103,25 @@ export default function Header() {
           aria-hidden={!isMobileMenuOpen}
         >
           <div className="flex flex-col gap-4 pt-4">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-white hover:text-[#d4af37] transition-colors duration-200 text-sm font-medium py-2 focus:outline-none focus:ring-2 focus:ring-[#d4af37] focus:ring-offset-2 focus:ring-offset-[#082C73] rounded px-2"
-                onClick={() => setIsMobileMenuOpen(false)}
-                aria-label={`Navigate to ${link.label}`}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`relative transition-all duration-200 text-sm font-medium py-2 px-3 focus:outline-none focus:ring-2 focus:ring-[#d4af37] focus:ring-offset-2 focus:ring-offset-[#082C73] ${
+                    isActive
+                      ? "text-[#d4af37] font-semibold border-l-4 border-[#d4af37] pl-4"
+                      : "text-white hover:text-[#d4af37]"
+                  }`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  aria-label={`Navigate to ${link.label}`}
+                  aria-current={isActive ? "page" : undefined}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </div>
         </nav>
       </div>

@@ -35,7 +35,6 @@ export default function Home() {
       <SectionWrapper delay={0.4}>
         <JoinCTA />
       </SectionWrapper>
-      <Footer />
     </div>
   );
 }
