@@ -60,20 +60,17 @@ export default function Footer() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
         {/* Column 1 - Logo and Description */}
         <div className="px-6 md:px-0">
-          <div className="mb-4">
-            <div className="flex items-center gap-2">
-              <div className="relative w-12 h-12 flex items-center justify-center flex-shrink-0">
+          <div className="mb-6 p-4 md:p-6">
+            <div className="flex items-center">
+              <div className="relative flex items-center justify-center flex-shrink-0">
                 <Image
-                  src="/assets/logos/player-arcadia-logo.png"
+                  src="/assets/logos/player-arcadia-logo-2.png"
                   alt="PlayersArcadia Logo"
-                  width={48}
-                  height={48}
-                  className="object-contain w-full h-full"
+                  width={170}
+                  height={170}
+                  className="object-contain"
                 />
               </div>
-              <span className="text-xl font-semibold tracking-tight text-black">
-                PlayersArcadia
-              </span>
             </div>
           </div>
           <p className="text-gray-600 text-sm leading-relaxed">
