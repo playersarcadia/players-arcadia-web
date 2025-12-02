@@ -1,15 +1,11 @@
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm">
-        <h1 className="text-4xl font-bold text-center mb-4">
-          Players Arcadia
-        </h1>
-        <p className="text-center text-lg text-gray-600">
-          Pro-level tools for running seamless mobile esports tournaments with fast, effortless payouts across the continent.
-        </p>
+    <div className="min-h-screen bg-white">
+      {/* Placeholder for page content */}
+      <div className="h-96 bg-gray-100 rounded-lg flex items-center justify-center">
+        <p className="text-gray-500">Page content will go here</p>
       </div>
-    </main>
+    </div>
   );
 }
 
