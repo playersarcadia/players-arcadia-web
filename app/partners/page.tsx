@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
   title: "Partners",
@@ -9,6 +10,7 @@ export default function PartnersPage() {
   return (
     <div className="min-h-screen bg-white py-12 md:py-16">
       <div className="max-w-4xl mx-auto px-6 md:px-8">
+        <Breadcrumbs />
         <h1 className="text-4xl md:text-5xl font-bold text-[#082C73] mb-6">
           Partners
         </h1>

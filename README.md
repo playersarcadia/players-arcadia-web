@@ -86,3 +86,60 @@ To bypass hooks (not recommended):
 git commit --no-verify
 git push --no-verify
 ```
+
+## Environment Variables
+
+Copy `.env.example` to `.env.local` and fill in the values:
+
+```bash
+cp .env.example .env.local
+```
+
+Required variables:
+- `NEXT_PUBLIC_SITE_URL` - Your production site URL
+- `NEXT_PUBLIC_GA_ID` - Google Analytics ID (optional)
+
+## Features
+
+### SEO & Performance
+- ✅ Auto-generated sitemap.xml and robots.txt
+- ✅ Structured data (Schema.org)
+- ✅ Security headers
+- ✅ Image optimization
+- ✅ Code splitting and lazy loading
+
+### UI Components
+- ✅ Breadcrumb navigation
+- ✅ Loading spinner component
+- ✅ Error boundaries
+- ✅ Smooth animations
+
+### Development
+- ✅ TypeScript for type safety
+- ✅ ESLint for code quality
+- ✅ Jest for testing
+- ✅ CI/CD with GitHub Actions
+
+## Project Status
+
+See [docs/PROJECT_STATUS.md](./docs/PROJECT_STATUS.md) for a comprehensive overview of completed features and recommendations.
+
+## Deployment
+
+### Build for Production
+
+```bash
+npm run build
+npm start
+```
+
+### Deploy to Vercel
+
+The easiest way to deploy is using [Vercel](https://vercel.com):
+
+```bash
+npm i -g vercel
+vercel
+```
+
+Or connect your GitHub repository to Vercel for automatic deployments.

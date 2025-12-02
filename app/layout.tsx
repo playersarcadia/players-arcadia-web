@@ -72,9 +72,39 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Players Arcadia",
+    description: "Pro-level tools for running seamless mobile esports tournaments with fast, effortless payouts across the continent.",
+    url: baseUrl,
+    logo: `${baseUrl}/assets/logos/player-arcadia-logo.png`,
+    sameAs: [
+      "https://twitter.com/playersarcadia",
+      "https://facebook.com/playersarcadia",
+      "https://instagram.com/playersarcadia",
+      "https://linkedin.com/company/playersarcadia",
+    ],
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "Customer Service",
+    },
+  };
+
   return (
-    <html lang="en" className="bg-gray-50 scroll-smooth">
-      <body className="bg-gray-50">
+    <html lang="en" className="bg-gray-50 scroll-smooth" suppressHydrationWarning>
+      <head>
+        {/* Structured Data (Schema.org) */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredData),
+          }}
+        />
+      </head>
+      <body className="bg-gray-50" suppressHydrationWarning>
         <Analytics />
         <a
           href="#main-content"
@@ -95,4 +125,3 @@ export default function RootLayout({
     </html>
   );
 }
-
