@@ -57,3 +57,17 @@ body {
   opacity: 1 !important;
 }
 
+/* Upcoming Tournaments Custom Navigation */
+.swiper-button-prev-custom,
+.swiper-button-next-custom {
+  position: static !important;
+  margin: 0 !important;
+  width: 40px !important;
+  height: 40px !important;
+}
+
+.swiper-button-prev-custom:after,
+.swiper-button-next-custom:after {
+  display: none !important;
+}
+
