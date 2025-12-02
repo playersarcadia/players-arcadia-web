@@ -19,3 +19,41 @@ body {
   }
 }
 
+/* Swiper Custom Styles */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #d4af37 !important;
+  background: rgba(8, 44, 115, 0.8);
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50%;
+  backdrop-filter: blur(10px);
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  font-size: 18px !important;
+  font-weight: bold;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background: rgba(8, 44, 115, 0.95);
+  transform: scale(1.1);
+  transition: all 0.2s;
+}
+
+.swiper-pagination {
+  bottom: 20px !important;
+}
+
+.swiper-pagination-bullet {
+  width: 12px !important;
+  height: 12px !important;
+  opacity: 0.5 !important;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1 !important;
+}
+
