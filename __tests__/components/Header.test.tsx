@@ -4,9 +4,10 @@ import Header from '@/components/Header'
 
 // Mock Next.js Link component
 jest.mock('next/link', () => {
-  return ({ children, href }: { children: React.ReactNode; href: string }) => {
+  function MockLink({ children, href }: { children: React.ReactNode; href: string }) {
     return <a href={href}>{children}</a>
   }
+  return MockLink
 })
 
 describe('Header', () => {
@@ -30,7 +31,7 @@ describe('Header', () => {
 
   it('renders download app button', () => {
     render(<Header />)
-    const downloadButton = screen.getByRole('button', { name: /download app/i })
+    const downloadButton = screen.getByRole('button', { name: /download players arcadia mobile app/i })
     expect(downloadButton).toBeInTheDocument()
   })
 

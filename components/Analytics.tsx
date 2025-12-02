@@ -1,20 +1,41 @@
 "use client";
 
 import Script from "next/script";
-import { Suspense, useEffect } from "react";
+import { Suspense, useEffect, useRef } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { GA_TRACKING_ID, pageview } from "@/lib/analytics";
 
 function AnalyticsScript() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const prevUrlRef = useRef<string>("");
+  const prevSearchStringRef = useRef<string>("");
+
+  // Convert searchParams to string once - this is the actual value we care about
+  // We'll compare this string value to detect real changes, not object reference changes
+  const currentSearchString = searchParams?.toString() || "";
 
   useEffect(() => {
     if (!GA_TRACKING_ID) return;
 
-    const url = pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : "");
-    pageview(url);
-  }, [pathname, searchParams]);
+    // Only proceed if search string actually changed (not just object reference)
+    const searchStringChanged = currentSearchString !== prevSearchStringRef.current;
+    
+    if (searchStringChanged) {
+      prevSearchStringRef.current = currentSearchString;
+    }
+
+    // Construct URL (toString() called only once above, reused here)
+    const url = pathname + (currentSearchString ? `?${currentSearchString}` : "");
+
+    // Only send pageview if URL actually changed to prevent duplicate events
+    if (url !== prevUrlRef.current) {
+      prevUrlRef.current = url;
+      pageview(url);
+    }
+    // Depend on pathname and the actual string value, not the searchParams object
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname, currentSearchString]);
 
   return null;
 }
