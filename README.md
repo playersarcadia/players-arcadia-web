@@ -73,3 +73,16 @@ npm run test:coverage
 ```
 
 Tests are located in the `__tests__` directory and follow the same structure as the source code.
+
+## Git Hooks (Husky)
+
+This project uses [Husky](https://typicode.github.io/husky/) to run Git hooks:
+
+- **pre-commit**: Runs `lint-staged` to lint and format staged files before committing
+- **pre-push**: Runs tests before pushing to ensure all tests pass
+
+To bypass hooks (not recommended):
+```bash
+git commit --no-verify
+git push --no-verify
+```
