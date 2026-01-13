@@ -39,10 +39,10 @@ const heroSlides: HeroSlide[] = [
 export default function Hero() {
   return (
     <section className="relative w-full pt-4 pb-8 md:pt-6 md:pb-12">
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-8">
         {/* Left Side - Large Carousel Banner */}
-        <div className="lg:col-span-2">
-          <div className="relative h-[400px] md:h-[500px] lg:h-[600px] rounded-2xl overflow-hidden bg-gradient-to-br from-[#082C73] to-[#0a1128]">
+        <div className="lg:col-span-3">
+          <div className="relative h-[500px] md:h-[500px] lg:h-[706px] rounded-2xl overflow-hidden bg-gradient-to-br from-[#082C73] to-[#0a1128]">
             <Swiper
               modules={[Autoplay, Pagination, Navigation]}
               spaceBetween={0}
@@ -112,7 +112,7 @@ export default function Hero() {
         {/* Right Side - Two Cards */}
         <div className="lg:col-span-1 flex flex-col gap-6">
           {/* Top Card - Empower Your Community */}
-          <div className="flex-1 relative h-[280px] md:h-[300px] rounded-2xl overflow-hidden bg-gradient-to-br from-[#082C73] to-[#0a1128] p-6 flex flex-col items-center justify-center text-center">
+          <div className="relative h-[280px] md:h-[280px] lg:h-[280px] rounded-2xl overflow-hidden bg-gradient-to-br from-[#082C73] to-[#0a1128] p-6 flex flex-col items-center justify-center text-center">
             {/* Placeholder Background Pattern */}
             <div className="absolute inset-0 opacity-10">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#d4af37]/20 via-transparent to-transparent"></div>
@@ -136,7 +136,7 @@ export default function Hero() {
           </div>
 
           {/* Bottom Card - Call of Duty */}
-          <div className="flex-1 relative h-[280px] md:h-[300px] rounded-2xl overflow-hidden bg-gradient-to-br from-gray-900 to-gray-800">
+          <div className="relative h-[400px] md:h-[400px] lg:h-[400px] rounded-2xl overflow-hidden bg-gradient-to-br from-gray-900 to-gray-800">
             {/* Placeholder Background - Replace with actual image later */}
             <div className="absolute inset-0 bg-gradient-to-br from-gray-900/80 to-gray-800/80">
               <div className="absolute inset-0 bg-[url('/assets/games/cod-mobile.jpg')] bg-cover bg-center opacity-40"></div>
