@@ -1,41 +1,25 @@
-import dynamic from "next/dynamic";
-import SectionWrapper from "@/components/SectionWrapper";
+import type { Metadata } from "next";
+import GamersArcLanding from "@/components/GamersArcLanding";
+import "./gamers-arc-landing.css";
 
-// Lazy load components for better performance
-const Hero = dynamic(() => import("@/components/Hero"), {
-  loading: () => <div className="h-[600px] bg-gray-100 animate-pulse rounded-2xl" />,
-});
-const UpcomingTournaments = dynamic(() => import("@/components/UpcomingTournaments"), {
-  loading: () => <div className="h-96 bg-gray-100 animate-pulse rounded-2xl" />,
-});
-const ProTools = dynamic(() => import("@/components/ProTools"), {
-  loading: () => <div className="h-64 bg-gray-800 animate-pulse rounded-2xl" />,
-});
-const StrengthenCommunity = dynamic(() => import("@/components/StrengthenCommunity"), {
-  loading: () => <div className="h-96 bg-gray-100 animate-pulse rounded-2xl" />,
-});
-const JoinCTA = dynamic(() => import("@/components/JoinCTA"), {
-  loading: () => <div className="h-96 bg-gray-900 animate-pulse rounded-2xl" />,
-});
-const Footer = dynamic(() => import("@/components/Footer"));
+export const metadata: Metadata = {
+  title: {
+    absolute: "GamersArc — Compete. Conquer. Cash Out.",
+  },
+  description:
+    "GamersArc is where real skill meets real money. Challenge rivals, enter tournaments, build your squad, and turn every match into an opportunity to win big.",
+  openGraph: {
+    title: "GamersArc — Compete. Conquer. Cash Out.",
+    description:
+      "GamersArc is where real skill meets real money. Challenge rivals, enter tournaments, build your squad, and turn every match into an opportunity to win big.",
+  },
+  twitter: {
+    title: "GamersArc — Compete. Conquer. Cash Out.",
+    description:
+      "GamersArc is where real skill meets real money. Challenge rivals, enter tournaments, build your squad, and turn every match into an opportunity to win big.",
+  },
+};
 
 export default function Home() {
-  return (
-    <div className="min-h-screen bg-white">
-      <Hero />
-      <SectionWrapper delay={0.1}>
-        <UpcomingTournaments />
-      </SectionWrapper>
-      <SectionWrapper delay={0.2}>
-        <ProTools />
-      </SectionWrapper>
-      <SectionWrapper delay={0.3}>
-        <StrengthenCommunity />
-      </SectionWrapper>
-      <SectionWrapper delay={0.4}>
-        <JoinCTA />
-      </SectionWrapper>
-    </div>
-  );
+  return <GamersArcLanding />;
 }
-

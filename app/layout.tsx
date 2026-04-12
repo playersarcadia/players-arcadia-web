@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import Analytics from "@/components/Analytics";
 
@@ -112,15 +110,7 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
-        <ErrorBoundary>
-          <div className="mx-4 sm:mx-6 md:mx-8 lg:mx-10 xl:mx-12 min-h-screen bg-white flex flex-col">
-            <Header />
-            <main className="pt-16 sm:pt-18 md:pt-20 lg:pt-22 xl:pt-24 flex-1" id="main-content" role="main" tabIndex={-1}>
-              {children}
-            </main>
-            <Footer />
-          </div>
-        </ErrorBoundary>
+        <ErrorBoundary>{children}</ErrorBoundary>
       </body>
     </html>
   );
