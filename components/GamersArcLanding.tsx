@@ -4,6 +4,33 @@ import { useEffect, useState } from "react";
 
 export default function GamersArcLanding() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
+
+  useEffect(() => {
+    // Load theme from localStorage
+    const savedTheme = localStorage.getItem("theme") as "dark" | "light" | null;
+    if (savedTheme) {
+      setTheme(savedTheme);
+    }
+  }, []);
+
+  useEffect(() => {
+    // Apply theme class to the main element
+    const main = document.querySelector(".gamers-arc-landing");
+    if (main) {
+      if (theme === "light") {
+        main.classList.add("light-mode");
+      } else {
+        main.classList.remove("light-mode");
+      }
+    }
+    // Save theme to localStorage
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+  };
 
   useEffect(() => {
     if (menuOpen) {
@@ -95,6 +122,17 @@ export default function GamersArcLanding() {
 <div id="cursor"></div>
   <div id="cursor-trail"></div>
 
+  {/* Floating Theme Switcher */}
+  <button
+    type="button"
+    onClick={toggleTheme}
+    className="theme-toggle-float"
+    aria-label="Toggle theme"
+    title="Toggle dark/light mode"
+  >
+    {theme === "dark" ? "☀️" : "🌙"}
+  </button>
+
   {/* NAV */}
   {menuOpen ? (
     <button
@@ -107,7 +145,13 @@ export default function GamersArcLanding() {
   <nav>
     <div className="nav-brand">
       {/* LOGO SLOT */}
-      <div className="logo-box">GA</div>
+      <div className="logo-box">
+        <img
+          src={theme === "dark" ? "/icons/Gamers-Arc-white.png" : "/icons/Gamers-Arc.png"}
+          alt="Gamers Arc Logo"
+          style={{width: "100%", height: "100%", objectFit: "contain"}}
+        />
+      </div>
       <div className="brand-name">GAMERS<span>ARC</span></div>
     </div>
     <ul className={`nav-links${menuOpen ? " is-open" : ""}`} id="landing-nav-menu">
@@ -496,8 +540,13 @@ export default function GamersArcLanding() {
         <div>
           {/* FOOTER LOGO SLOT */}
           <div
-            style={{"width":"52px","height":"52px","border":"2px solid var(--gold)","borderRadius":"8px","display":"grid","placeItems":"center","fontFamily":"'Black Han Sans',sans-serif","fontSize":"1.2rem","color":"var(--gold)"}}>
-            GA</div>
+            style={{"width":"80px","height":"80px","border":"none","borderRadius":"10px","display":"grid","placeItems":"center","overflow":"hidden"}}>
+            <img
+              src={theme === "dark" ? "/icons/Gamers-Arc-white.png" : "/icons/Gamers-Arc.png"}
+              alt="Gamers Arc Logo"
+              style={{width: "100%", height: "100%", objectFit: "contain"}}
+            />
+          </div>
           <div className="footer-brand-name">GAMERS<span>ARC</span></div>
           <p className="footer-tagline">The competitive gaming platform where skill earns real rewards. Play, win, repeat.
           </p>

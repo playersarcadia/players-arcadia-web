@@ -29,6 +29,68 @@
       cursor: none
     }
 
+.gamers-arc-landing.light-mode {
+      --bg: #f8fafc;
+      --deep: #e2e8f0;
+      --card: #ffffff;
+      --border: rgba(198, 145, 45, .35);
+      --gold: #c6912d;
+      --gold2: #a6731a;
+      --cyan: #0284c7;
+      --red: #dc2626;
+      --text: #0f172a;
+      --muted: #475569;
+      --white: #ffffff;
+
+      background: var(--bg);
+      color: var(--text)
+    }
+
+    /* floating theme toggle button */
+    .theme-toggle-float {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--gold);
+      border: 2px solid var(--gold);
+      color: var(--bg);
+      font-size: 1.5rem;
+      cursor: none;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 20px rgba(198, 145, 45, .4)
+    }
+
+    .theme-toggle-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 30px rgba(198, 145, 45, .6)
+    }
+
+    .gamers-arc-landing.light-mode .theme-toggle-float {
+      background: var(--bg);
+      border-color: var(--gold);
+      color: var(--gold);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, .15)
+    }
+
+    .gamers-arc-landing.light-mode .theme-toggle-float:hover {
+      box-shadow: 0 6px 30px rgba(0, 0, 0, .25)
+    }
+
+    /* Touch / coarse pointers: normal cursor for theme toggle */
+    @media (hover: none),
+    (pointer: coarse) {
+      .theme-toggle-float {
+        cursor: pointer
+      }
+    }
+
     /* custom cursor */
     #cursor {
       position: fixed;
@@ -82,6 +144,12 @@
       backdrop-filter: blur(16px)
     }
 
+    .gamers-arc-landing.light-mode nav {
+      border-bottom: 1px solid rgba(198, 145, 45, .15);
+      background: rgba(248, 250, 252, .9);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, .08)
+    }
+
     .nav-brand {
       display: flex;
       align-items: center;
@@ -89,10 +157,10 @@
     }
 
     .logo-box {
-      width: 44px;
-      height: 44px;
-      border: 2px solid var(--gold);
-      border-radius: 6px;
+      width: 72px;
+      height: 72px;
+      border: none;
+      border-radius: 10px;
       display: grid;
       place-items: center;
       font-family: 'Black Han Sans', sans-serif;
@@ -131,6 +199,10 @@
 
     .brand-name span {
       color: var(--gold)
+    }
+
+    .gamers-arc-landing.light-mode .brand-name {
+      color: var(--text)
     }
 
     .nav-links {
@@ -624,6 +696,10 @@
       background: var(--deep)
     }
 
+    .gamers-arc-landing.light-mode .challenge-section {
+      background: #f1f5f9
+    }
+
     .challenge-layout {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -788,6 +864,10 @@
       background: var(--bg)
     }
 
+    .gamers-arc-landing.light-mode .tournament-section {
+      background: #f8fafc
+    }
+
     .tournament-layout {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -937,6 +1017,10 @@
       background: var(--deep)
     }
 
+    .gamers-arc-landing.light-mode .teams-section {
+      background: #f1f5f9
+    }
+
     .teams-layout {
       display: grid;
       grid-template-columns: 1.2fr 1fr;
@@ -1054,6 +1138,10 @@
       padding: 4rem 5%
     }
 
+    .gamers-arc-landing.light-mode .sponsors-section {
+      background: #f8fafc
+    }
+
     .sponsors-inner {
       max-width: 1100px;
       margin: 0 auto
@@ -1106,6 +1194,12 @@
       padding: 4rem 5%
     }
 
+    .gamers-arc-landing.light-mode .morale-banner {
+      background: linear-gradient(105deg, #f1f5f9, #e2e8f0);
+      border-top: 1px solid rgba(198, 145, 45, .2);
+      border-bottom: 1px solid rgba(198, 145, 45, .2)
+    }
+
     .morale-center {
       max-width: 800px;
       margin: 0 auto;
@@ -1140,6 +1234,10 @@
     /* ─── HOW IT WORKS ─── */
     .how-section {
       background: var(--bg)
+    }
+
+    .gamers-arc-landing.light-mode .how-section {
+      background: #f8fafc
     }
 
     .steps {
@@ -1206,6 +1304,10 @@
       padding: 5rem 5%
     }
 
+    .gamers-arc-landing.light-mode .stats-full {
+      background: #e2e8f0
+    }
+
     .stats-inner {
       max-width: 1100px;
       margin: 0 auto;
@@ -1245,6 +1347,11 @@
       background: var(--deep);
       border-top: 1px solid rgba(198, 145, 45, .08);
       padding: 3rem 5% 2rem
+    }
+
+    .gamers-arc-landing.light-mode footer {
+      background: #e2e8f0;
+      border-top: 1px solid rgba(198, 145, 45, .15)
     }
 
     .footer-inner {
