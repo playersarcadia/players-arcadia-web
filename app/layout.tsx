@@ -54,12 +54,10 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/icons/favicon.ico", sizes: "any" },
-      { url: "/icons/favicon.svg", type: "image/svg+xml" },
-      { url: "/icons/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+      { url: "/icons/Gamers-Arc.png", sizes: "any", type: "image/png" },
     ],
     apple: [
-      { url: "/icons/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+      { url: "/icons/Gamers-Arc.png", sizes: "180x180", type: "image/png" },
     ],
   },
   manifest: "/icons/site.webmanifest",
@@ -78,7 +76,7 @@ export default function RootLayout({
     name: "Players Arcadia",
     description: "Pro-level tools for running seamless mobile esports tournaments with fast, effortless payouts across the continent.",
     url: baseUrl,
-    logo: `${baseUrl}/assets/logos/player-arcadia-logo.png`,
+    logo: `${baseUrl}/icons/Gamers-Arc-white.png`,
     sameAs: [
       "https://twitter.com/playersarcadia",
       "https://facebook.com/playersarcadia",

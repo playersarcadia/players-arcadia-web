@@ -13,11 +13,11 @@
       --bg: #05080f;
       --deep: #080c18;
       --card: #0b1120;
-      --border: rgba(255, 210, 0, .12);
-      --gold: #ffd200;
-      --gold2: #ff9900;
+      --border: rgba(198, 145, 45, .12);
+      --gold: #c6912d;
+      --gold2: #c6912d;
       --cyan: #00e5ff;
-      --red: #ff2f4e;
+      --red: #27387f;
       --text: #dde6ff;
       --muted: #5a6890;
       --white: #ffffff;
@@ -47,7 +47,7 @@
       position: fixed;
       width: 40px;
       height: 40px;
-      border: 1px solid rgba(255, 210, 0, .3);
+      border: 1px solid rgba(198, 145, 45, .3);
       border-radius: 50%;
       pointer-events: none;
       z-index: 9998;
@@ -77,7 +77,7 @@
       align-items: center;
       justify-content: space-between;
       padding: max(.85rem, env(safe-area-inset-top)) max(5%, env(safe-area-inset-right)) .85rem max(5%, env(safe-area-inset-left));
-      border-bottom: 1px solid rgba(255, 210, 0, .08);
+      border-bottom: 1px solid rgba(198, 145, 45, .08);
       background: rgba(5, 8, 15, .85);
       backdrop-filter: blur(16px)
     }
@@ -106,7 +106,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, rgba(255, 210, 0, .15), transparent);
+      background: linear-gradient(135deg, rgba(198, 145, 45, .15), transparent);
       animation: shimmer 3s ease infinite
     }
 
@@ -167,7 +167,8 @@
       border: none;
       cursor: none;
       transition: transform .15s, box-shadow .2s;
-      text-decoration: none
+      text-decoration: none;
+      touch-action: manipulation
     }
 
     .nav-cta:hover {
@@ -190,17 +191,17 @@
       width: 44px;
       height: 44px;
       padding: 0;
-      border: 1px solid rgba(255, 210, 0, .25);
+      border: 1px solid rgba(198, 145, 45, .25);
       border-radius: 6px;
-      background: rgba(255, 210, 0, .06);
+      background: rgba(198, 145, 45, .06);
       cursor: pointer;
       -webkit-tap-highlight-color: transparent;
       transition: border-color .2s, background .2s
     }
 
     .nav-toggle:hover {
-      border-color: rgba(255, 210, 0, .5);
-      background: rgba(255, 210, 0, .1)
+      border-color: rgba(198, 145, 45, .5);
+      background: rgba(198, 145, 45, .1)
     }
 
     .nav-toggle-bar {
@@ -280,7 +281,7 @@
       left: -5%;
       width: 60%;
       height: 120%;
-      background: linear-gradient(105deg, transparent 40%, rgba(255, 210, 0, .03) 40.5%, rgba(255, 210, 0, .06) 50%, transparent 50.5%);
+      background: linear-gradient(105deg, transparent 40%, rgba(198, 145, 45, .03) 40.5%, rgba(198, 145, 45, .06) 50%, transparent 50.5%);
       transform: skewX(-8deg)
     }
 
@@ -301,7 +302,7 @@
     .arena-grid {
       position: absolute;
       inset: 0;
-      background-image: linear-gradient(rgba(255, 210, 0, .025) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 210, 0, .025) 1px, transparent 1px);
+      background-image: linear-gradient(rgba(198, 145, 45, .025) 1px, transparent 1px), linear-gradient(90deg, rgba(198, 145, 45, .025) 1px, transparent 1px);
       background-size: 80px 80px;
       animation: gridPan 25s linear infinite
     }
@@ -327,7 +328,7 @@
       display: inline-flex;
       align-items: center;
       gap: .7rem;
-      border: 1px solid rgba(255, 210, 0, .3);
+      border: 1px solid rgba(198, 145, 45, .3);
       padding: .4rem 1.2rem;
       border-radius: 2px;
       font-family: 'Barlow Condensed', sans-serif;
@@ -432,7 +433,8 @@
       transition: transform .15s, box-shadow .2s;
       cursor: none;
       position: relative;
-      overflow: hidden
+      overflow: hidden;
+      touch-action: manipulation
     }
 
     .btn::after {
@@ -645,13 +647,13 @@
       position: absolute;
       inset: 0;
       border-radius: 50%;
-      border: 1px solid rgba(255, 210, 0, .15);
+      border: 1px solid rgba(198, 145, 45, .15);
       animation: spin 20s linear infinite
     }
 
     .vs-ring:nth-child(2) {
       inset: 20px;
-      border-color: rgba(255, 47, 78, .12);
+      border-color: rgba(39, 56, 127, .12);
       animation-direction: reverse;
       animation-duration: 14s
     }
@@ -811,7 +813,7 @@
 
     .t-card:hover {
       transform: translateX(6px);
-      border-color: rgba(255, 210, 0, .4)
+      border-color: rgba(198, 145, 45, .4)
     }
 
     .t-card-accent {
@@ -824,7 +826,7 @@
     }
 
     .t-card.featured .t-card-accent {
-      background: linear-gradient(180deg, var(--red), #ff6b00)
+      background: linear-gradient(180deg, var(--red), #27387f)
     }
 
     .t-card-top {
@@ -852,15 +854,15 @@
     }
 
     .t-badge.live {
-      background: rgba(255, 47, 78, .15);
+      background: rgba(39, 56, 127, .15);
       color: var(--red);
-      border: 1px solid rgba(255, 47, 78, .3)
+      border: 1px solid rgba(39, 56, 127, .3)
     }
 
     .t-badge.open {
-      background: rgba(255, 210, 0, .1);
+      background: rgba(198, 145, 45, .1);
       color: var(--gold);
-      border: 1px solid rgba(255, 210, 0, .3)
+      border: 1px solid rgba(198, 145, 45, .3)
     }
 
     .t-badge.soon {
@@ -905,7 +907,7 @@
 
     .morale-box {
       background: var(--deep);
-      border: 1px solid rgba(255, 210, 0, .15);
+      border: 1px solid rgba(198, 145, 45, .15);
       border-radius: 12px;
       padding: 2.5rem;
       margin-top: 2rem
@@ -960,13 +962,13 @@
 
     .team-card:hover {
       transform: translateY(-5px);
-      border-color: rgba(255, 210, 0, .5)
+      border-color: rgba(198, 145, 45, .5)
     }
 
     .team-logo-slot {
       width: 64px;
       height: 64px;
-      border: 2px dashed rgba(255, 210, 0, .25);
+      border: 2px dashed rgba(198, 145, 45, .25);
       border-radius: 10px;
       margin: 0 auto 1rem;
       display: grid;
@@ -980,14 +982,14 @@
     }
 
     .team-card:hover .team-logo-slot {
-      border-color: rgba(255, 210, 0, .6);
+      border-color: rgba(198, 145, 45, .6);
       color: var(--gold)
     }
 
     .team-card.has-logo .team-logo-slot {
       border-style: solid;
       border-color: var(--border);
-      background: rgba(255, 210, 0, .05);
+      background: rgba(198, 145, 45, .05);
       font-size: 1.8rem
     }
 
@@ -1091,15 +1093,15 @@
     }
 
     .logo-slot:hover {
-      border-color: rgba(255, 210, 0, .4);
+      border-color: rgba(198, 145, 45, .4);
       color: var(--gold)
     }
 
     /* ─── MORALE BANNER ─── */
     .morale-banner {
       background: linear-gradient(105deg, #0d1628, #12091e);
-      border-top: 1px solid rgba(255, 210, 0, .1);
-      border-bottom: 1px solid rgba(255, 210, 0, .1);
+      border-top: 1px solid rgba(198, 145, 45, .1);
+      border-bottom: 1px solid rgba(198, 145, 45, .1);
       overflow: hidden;
       padding: 4rem 5%
     }
@@ -1170,7 +1172,7 @@
       right: -.5rem;
       font-family: 'Black Han Sans', sans-serif;
       font-size: 5rem;
-      color: rgba(255, 210, 0, .04);
+      color: rgba(198, 145, 45, .04);
       line-height: 1
     }
 
@@ -1241,7 +1243,7 @@
     /* ─── FOOTER ─── */
     .gamers-arc-landing footer {
       background: var(--deep);
-      border-top: 1px solid rgba(255, 210, 0, .08);
+      border-top: 1px solid rgba(198, 145, 45, .08);
       padding: 3rem 5% 2rem
     }
 
@@ -1395,7 +1397,7 @@
         padding: .5rem 0 1rem;
         list-style: none;
         background: rgba(5, 8, 15, .98);
-        border-bottom: 1px solid rgba(255, 210, 0, .12);
+        border-bottom: 1px solid rgba(198, 145, 45, .12);
         box-shadow: 0 12px 40px rgba(0, 0, 0, .45);
         transform: translateY(-12px);
         opacity: 0;
@@ -1422,7 +1424,8 @@
         display: block;
         padding: 1rem max(5%, env(safe-area-inset-right)) 1rem max(5%, env(safe-area-inset-left));
         font-size: .95rem;
-        letter-spacing: .14em
+        letter-spacing: .14em;
+        touch-action: manipulation
       }
 
       .nav-cta {
