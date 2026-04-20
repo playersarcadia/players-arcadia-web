@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function GamersArcLanding() {
+  const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
   const [theme, setTheme] = useState<"dark" | "light">("dark");
 
@@ -189,7 +191,7 @@ export default function GamersArcLanding() {
         <span className="nav-toggle-bar" aria-hidden />
         <span className="nav-toggle-bar" aria-hidden />
       </button>
-      <a href="#" className="nav-cta" onClick={closeMenu}>
+      <a href="/users" className="nav-cta" onClick={() => { closeMenu(); router.push('/users'); }}>
         Play Now
       </a>
     </div>
