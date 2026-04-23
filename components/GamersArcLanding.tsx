@@ -2,11 +2,14 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import WaitingListModal from "@/components/WaitingListModal";
+import { migrateWaitlistModalStorage, WAITLIST_MODAL_STORAGE_KEY } from "@/lib/waiting-list-api";
 
 export default function GamersArcLanding() {
   const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
   const [theme, setTheme] = useState<"dark" | "light">("dark");
+  const [waitlistOpen, setWaitlistOpen] = useState(false);
 
   useEffect(() => {
     // Load theme from localStorage
@@ -35,14 +38,24 @@ export default function GamersArcLanding() {
   };
 
   useEffect(() => {
-    if (menuOpen) {
-      const prev = document.body.style.overflow;
+    if (menuOpen || waitlistOpen) {
       document.body.style.overflow = "hidden";
-      return () => {
-        document.body.style.overflow = prev;
-      };
+    } else {
+      document.body.style.overflow = "";
     }
-  }, [menuOpen]);
+  }, [menuOpen, waitlistOpen]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    migrateWaitlistModalStorage();
+    try {
+      if (localStorage.getItem(WAITLIST_MODAL_STORAGE_KEY) === "1") return;
+    } catch {
+      /* ignore */
+    }
+    const id = window.setTimeout(() => setWaitlistOpen(true), 900);
+    return () => window.clearTimeout(id);
+  }, []);
 
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 901px)");
@@ -121,6 +134,11 @@ export default function GamersArcLanding() {
 
   return (
     <main id="main-content" tabIndex={-1} className="gamers-arc-landing min-h-screen">
+  <WaitingListModal
+        open={waitlistOpen}
+        onClose={() => setWaitlistOpen(false)}
+        theme={theme}
+      />
 <div id="cursor"></div>
   <div id="cursor-trail"></div>
 
