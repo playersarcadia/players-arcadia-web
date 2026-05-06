@@ -13,6 +13,7 @@ export default function GamersArcLanding() {
     // Load theme from localStorage
     const savedTheme = localStorage.getItem("theme") as "dark" | "light" | null;
     if (savedTheme) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setTheme(savedTheme);
     }
   }, []);
@@ -52,6 +53,7 @@ export default function GamersArcLanding() {
     } else {
       e.preventDefault();
       const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+      // eslint-disable-next-line react-hooks/immutability
       window.location.href = `${baseUrl}/users`;
     }
   };
