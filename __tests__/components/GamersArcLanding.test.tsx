@@ -2,27 +2,14 @@ import {render, screen , waitFor} from '@testing-library/react';
 import GamersArcLanding from '@/components/GamersArcLanding';
 import userEvent from '@testing-library/user-event';
 import {jest, describe, beforeEach, afterEach, it, expect} from '@jest/globals';
-import '@testing-library/jest-dom';
 
-// mock the useRouter hook from next/navigation
-const mockPush = jest.fn();
-const mockReplace = jest.fn();
-const mockPrefetch = jest.fn();
-
+// Mock the useRouter hook from next/navigation
 jest.mock('next/navigation', () => ({
-    useRouter: jest.fn(() => ({
-        push: mockPush,
-        replace: mockReplace,
-        prefetch: mockPrefetch,
-        back: jest.fn(),
-        forward: jest.fn(),
-        refresh: jest.fn(),
-        pathname: '/',
-        query: {},
-        asPath: '/',
-    })),
-    usePathname: jest.fn(() => '/'),
-    useSearchParams: jest.fn(() => new URLSearchParams()),
+    useRouter: () => ({
+        push: jest.fn(),
+        replace: jest.fn(),
+        prefetch: jest.fn()
+    }),
 }));
 
 // mock the WaitingListModal component

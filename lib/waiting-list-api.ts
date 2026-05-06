@@ -15,8 +15,7 @@ function readCsrfCookie(): string | null {
 }
 
 async function bootstrapCsrfCookie(apiBase: string): Promise<void> {
-  // console.log('🔍 API Base URL:', apiBase);
-  // console.log('🌐 Fetching CSRF from:', `${apiBase}/`);
+  
   await fetch(`${apiBase}/`, {
     method: "GET",
     credentials: "include",
