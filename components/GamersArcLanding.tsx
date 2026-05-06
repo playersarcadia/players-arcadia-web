@@ -45,25 +45,6 @@ export default function GamersArcLanding() {
     }
   }, [menuOpen, waitlistOpen]);
 
-  // The code below is commented out to prevent the waitlist modal from showing on the landing page, as per the latest requirements.
-  //  It can be re-enabled if needed in the future.
-
-  // useEffect(() => {
-  //   if (typeof window === "undefined") return;
-  //   migrateWaitlistModalStorage();
-  //   try {
-  //     if (localStorage.getItem(WAITLIST_MODAL_STORAGE_KEY) === "1") return;
-  //   } catch {
-  //     /* ignore */
-  //   }
-  //   const id = window.setTimeout(() => setWaitlistOpen(true), 900);
-  //   return () => window.clearTimeout(id);
-  // }, []);
-
-  // I will now write function to trigger the waitlist modal when the user clicks on the "Play Now"
-  //  button in the nav,
-  //  since we don't want it to show automatically on page load.
-
   const handlePlayNowClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     closeMenu();
 
@@ -71,10 +52,8 @@ export default function GamersArcLanding() {
       e.preventDefault();
       setWaitlistOpen(true);
     } else {
-      // In dev, go to API URL + /users
       e.preventDefault();
-      const baseUrl =
-        process.env.NEXT_PUBLIC_API_URL;
+      const baseUrl = process.env.NEXT_PUBLIC_API_URL;
       window.location.href = `${baseUrl}/users`;
     }
   };

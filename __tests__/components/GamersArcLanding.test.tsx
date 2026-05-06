@@ -1,22 +1,35 @@
 import {render, screen , waitFor} from '@testing-library/react';
 import GamersArcLanding from '@/components/GamersArcLanding';
 import userEvent from '@testing-library/user-event';
-import {jest, describe, beforeEach, it} from '@jest/globals';
+import {jest, describe, beforeEach, afterEach, it, expect} from '@jest/globals';
+import '@testing-library/jest-dom';
 
 // mock the useRouter hook from next/navigation
+const mockPush = jest.fn();
+const mockReplace = jest.fn();
+const mockPrefetch = jest.fn();
+
 jest.mock('next/navigation', () => ({
-    useRouter: () => ({
-        push: jest.fn(),
-        replace: jest.fn(),
-        prefetch: jest.fn()
-    }),
+    useRouter: jest.fn(() => ({
+        push: mockPush,
+        replace: mockReplace,
+        prefetch: mockPrefetch,
+        back: jest.fn(),
+        forward: jest.fn(),
+        refresh: jest.fn(),
+        pathname: '/',
+        query: {},
+        asPath: '/',
+    })),
+    usePathname: jest.fn(() => '/'),
+    useSearchParams: jest.fn(() => new URLSearchParams()),
 }));
 
 // mock the WaitingListModal component
 jest.mock('@/components/WaitingListModal', () => {
-    return function MockWaitingListModal({Open, onClose}: {Open: boolean; onClose: () => void}) {
-        return Open ? (
-            <div data-testid="waiting-list-modal">
+    return function MockWaitingListModal({open, onClose}: {open: boolean; onClose: () => void}) {
+        return open ? (
+            <div data-testid="waitlist-modal">
                 <p>Waiting List Modal</p>
                 <button onClick={onClose}>Close</button>
             </div>
@@ -40,19 +53,19 @@ const localStorageMock =(()=>{
     };
 })();
 
-Object.defineProperty(window, 'localStorage', { 
+Object.defineProperty(window, 'localStorage', {
 value: localStorageMock });
 
 // Mock the matchMedia function
 Object.defineProperties(window, {
     matchMedia: {
         writable: true,
-        value: jest.fn().mockImplementation(query => ({ 
+        value: jest.fn().mockImplementation(query => ({
             matches: false,
             media: query,
             onchange: null,
-            addListener: jest.fn(), 
-            removeListener: jest.fn(), 
+            addListener: jest.fn(),
+            removeListener: jest.fn(),
             addEventListener: jest.fn(),
             removeEventListener: jest.fn(),
             dispatchEvent: jest.fn(),
@@ -75,6 +88,7 @@ describe('GamersArcLanding - Waitlist Modal Behavior', () => {
 
   it("should NOT auto-open waitlist modal on mount", async () => {
     render(<GamersArcLanding />);
+
     // Fast-forward time to simulate the 900ms delay
     jest.advanceTimersByTime(1000);
 
@@ -82,10 +96,4 @@ describe('GamersArcLanding - Waitlist Modal Behavior', () => {
     const modal = screen.queryByTestId("waitlist-modal");
     expect(modal).not.toBeInTheDocument();
   });
-  // Fast-forward time to simulate the 900ms delay
-  jest.advanceTimersByTime(1000);
-
-  // Modal should NOT be present
-  const modal = screen.queryByTestId("waitlist-modal");
-  expect(modal).not.toBeInTheDocument();
 });
