@@ -1,5 +1,5 @@
 /**
- * Public waiting-list signup against GamersArc API (POST /waiting-list).
+ * Public waiting-list signup against GamersArc API (POST /waiting_list/join-waiting-list).
  * Uses the same CSRF cookie flow as other frontends when the API runs with CSRF enabled.
  */
 
@@ -45,7 +45,7 @@ export type JoinWaitingListResult =
   | { ok: false; message: string };
 
 /**
- * POST /waiting-list — body must be `{ email }` (valid email string).
+ * POST /waiting_list/join-waiting-list — body must be `{ email }` (valid email string).
  * Backend: `WaitingListRequest` (Pydantic EmailStr). Persists `waiting_list.email` (unique).
  * 201 = created; 409 = email already on the list; CSRF header when API enforces it.
  */
@@ -66,7 +66,7 @@ export async function joinWaitingList(email: string): Promise<JoinWaitingListRes
 
   let res: Response;
   try {
-    res = await fetch(`${apiBase}/waiting-list`, {
+    res = await fetch(`${apiBase}/waiting_list/join-waiting-list`, {
       method: "POST",
       credentials: "include",
       headers,

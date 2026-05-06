@@ -45,17 +45,39 @@ export default function GamersArcLanding() {
     }
   }, [menuOpen, waitlistOpen]);
 
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    migrateWaitlistModalStorage();
-    try {
-      if (localStorage.getItem(WAITLIST_MODAL_STORAGE_KEY) === "1") return;
-    } catch {
-      /* ignore */
+  // The code below is commented out to prevent the waitlist modal from showing on the landing page, as per the latest requirements.
+  //  It can be re-enabled if needed in the future.
+
+  // useEffect(() => {
+  //   if (typeof window === "undefined") return;
+  //   migrateWaitlistModalStorage();
+  //   try {
+  //     if (localStorage.getItem(WAITLIST_MODAL_STORAGE_KEY) === "1") return;
+  //   } catch {
+  //     /* ignore */
+  //   }
+  //   const id = window.setTimeout(() => setWaitlistOpen(true), 900);
+  //   return () => window.clearTimeout(id);
+  // }, []);
+
+  // I will now write function to trigger the waitlist modal when the user clicks on the "Play Now"
+  //  button in the nav,
+  //  since we don't want it to show automatically on page load.
+
+  const handlePlayNowClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    closeMenu();
+
+    if (process.env.NEXT_PUBLIC_SHOW_WAITLIST === "true") {
+      e.preventDefault();
+      setWaitlistOpen(true);
+    } else {
+      // In dev, go to API URL + /users
+      e.preventDefault();
+      const baseUrl =
+        process.env.NEXT_PUBLIC_API_URL;
+      window.location.href = `${baseUrl}/users`;
     }
-    const id = window.setTimeout(() => setWaitlistOpen(true), 900);
-    return () => window.clearTimeout(id);
-  }, []);
+  };
 
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 901px)");
@@ -209,7 +231,7 @@ export default function GamersArcLanding() {
         <span className="nav-toggle-bar" aria-hidden />
         <span className="nav-toggle-bar" aria-hidden />
       </button>
-      <a href="/users" className="nav-cta" onClick={() => { closeMenu(); router.push('/users'); }}>
+      <a href="/users" className="nav-cta" onClick={handlePlayNowClick}>
         Play Now
       </a>
     </div>
