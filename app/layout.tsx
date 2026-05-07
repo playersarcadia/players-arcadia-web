@@ -92,6 +92,12 @@ export default function RootLayout({
   return (
     <html lang="en" className="bg-gray-50 scroll-smooth" suppressHydrationWarning>
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Barlow+Condensed:ital,wght@0,300;0,600;0,800;1,700&family=Barlow:wght@300;400;500&display=swap"
+          rel="stylesheet"
+        />
         {/* Structured Data (Schema.org) */}
         <script
           type="application/ld+json"
