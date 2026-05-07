@@ -1,23 +1,17 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import WaitingListModal from "@/components/WaitingListModal";
 import { migrateWaitlistModalStorage, WAITLIST_MODAL_STORAGE_KEY } from "@/lib/waiting-list-api";
 
 export default function GamersArcLanding() {
-  const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [theme, setTheme] = useState<"dark" | "light">("dark");
+  const [theme, setTheme] = useState<"dark" | "light">(() => {
+    if (typeof window === "undefined") return "dark";
+    return (localStorage.getItem("theme") as "dark" | "light" | null) ?? "dark";
+  });
   const [waitlistOpen, setWaitlistOpen] = useState(false);
-
-  useEffect(() => {
-    // Load theme from localStorage
-    const savedTheme = localStorage.getItem("theme") as "dark" | "light" | null;
-    if (savedTheme) {
-      setTheme(savedTheme);
-    }
-  }, []);
 
   useEffect(() => {
     // Apply theme class to the main element
@@ -45,24 +39,6 @@ export default function GamersArcLanding() {
     }
   }, [menuOpen, waitlistOpen]);
 
-  // The code below is commented out to prevent the waitlist modal from showing on the landing page, as per the latest requirements.
-  //  It can be re-enabled if needed in the future.
-
-  // useEffect(() => {
-  //   if (typeof window === "undefined") return;
-  //   migrateWaitlistModalStorage();
-  //   try {
-  //     if (localStorage.getItem(WAITLIST_MODAL_STORAGE_KEY) === "1") return;
-  //   } catch {
-  //     /* ignore */
-  //   }
-  //   const id = window.setTimeout(() => setWaitlistOpen(true), 900);
-  //   return () => window.clearTimeout(id);
-  // }, []);
-
-  // I will now write function to trigger the waitlist modal when the user clicks on the "Play Now"
-  //  button in the nav,
-  //  since we don't want it to show automatically on page load.
 
   const handlePlayNowClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     closeMenu();
@@ -73,10 +49,18 @@ export default function GamersArcLanding() {
     } else {
       // In dev, go to API URL + /users
       e.preventDefault();
-      const baseUrl =
-        process.env.NEXT_PUBLIC_API_URL;
-      window.location.href = `${baseUrl}/users`;
+      const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+      if (baseUrl) {
+        window.location.assign(`${baseUrl}/users`);
+      } else {
+        window.location.assign("/users");
+      }
     }
+  };
+
+  const handleCtaClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    setWaitlistOpen(true);
   };
 
   useEffect(() => {
@@ -188,10 +172,12 @@ export default function GamersArcLanding() {
     <div className="nav-brand">
       {/* LOGO SLOT */}
       <div className="logo-box">
-        <img
+        <Image
           src={theme === "dark" ? "/icons/Gamers-Arc-white.png" : "/icons/Gamers-Arc.png"}
           alt="Gamers Arc Logo"
-          style={{width: "100%", height: "100%", objectFit: "contain"}}
+          width={72}
+          height={72}
+          style={{ objectFit: "contain" }}
         />
       </div>
       <div className="brand-name">GAMERS<span>ARC</span></div>
@@ -300,7 +286,7 @@ export default function GamersArcLanding() {
             </div>
           </div>
           <div style={{"marginTop":"2.5rem"}}>
-            <a href="#" className="btn btn-gold"><span className="icon">⚔️</span> Issue a Challenge</a>
+            <a href="#" className="btn btn-gold" onClick={handleCtaClick}><span className="icon">⚔️</span> Issue a Challenge</a>
           </div>
         </div>
         <div className="challenge-visual">
@@ -352,7 +338,7 @@ export default function GamersArcLanding() {
             <div className="morale-author">— GamersArc Community</div>
           </div>
           <div style={{"marginTop":"2rem"}}>
-            <a href="#" className="btn btn-red"><span className="icon">🏆</span> Browse All Tournaments</a>
+            <a href="#" className="btn btn-red" onClick={handleCtaClick}><span className="icon">🏆</span> Browse All Tournaments</a>
           </div>
         </div>
         <div className="tourney-cards">
@@ -450,9 +436,9 @@ export default function GamersArcLanding() {
             </div>
           </div>
           <div style={{"marginTop":"2rem"}}>
-            <a href="#" className="btn btn-ghost"><span className="icon">🛡️</span> Browse Teams</a>
+            <a href="#" className="btn btn-ghost" onClick={handleCtaClick}><span className="icon">🛡️</span> Browse Teams</a>
             &nbsp;&nbsp;
-            <a href="#" className="btn btn-gold"><span className="icon">➕</span> Create a Team</a>
+            <a href="#" className="btn btn-gold" onClick={handleCtaClick}><span className="icon">➕</span> Create a Team</a>
           </div>
         </div>
         <div>
@@ -499,7 +485,7 @@ export default function GamersArcLanding() {
         The difference between average and legendary is one decision: <strong style={{"color":"var(--white)"}}>showing up and
           playing to win.</strong>
       </p>
-      <a href="#" className="btn btn-gold" style={{"fontSize":"1rem","padding":"1.1rem 3rem"}}><span className="icon">🚀</span> Start
+      <a href="#" className="btn btn-gold" style={{"fontSize":"1rem","padding":"1.1rem 3rem"}} onClick={handleCtaClick}><span className="icon">🚀</span> Start
         Your Arc Today</a>
     </div>
   </div>
@@ -582,11 +568,13 @@ export default function GamersArcLanding() {
         <div>
           {/* FOOTER LOGO SLOT */}
           <div
-            style={{"width":"80px","height":"80px","border":"none","borderRadius":"10px","display":"grid","placeItems":"center","overflow":"hidden"}}>
-            <img
+            style={{ width: "80px", height: "80px", border: "none", borderRadius: "10px", display: "grid", placeItems: "center", overflow: "hidden" }}>
+            <Image
               src={theme === "dark" ? "/icons/Gamers-Arc-white.png" : "/icons/Gamers-Arc.png"}
               alt="Gamers Arc Logo"
-              style={{width: "100%", height: "100%", objectFit: "contain"}}
+              width={80}
+              height={80}
+              style={{ objectFit: "contain" }}
             />
           </div>
           <div className="footer-brand-name">GAMERS<span>ARC</span></div>

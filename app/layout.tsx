@@ -54,10 +54,10 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/icons/Gamers-Arc.png", sizes: "any", type: "image/png" },
+      { url: "/assets/logos/player-arcadia-logo.png", sizes: "any", type: "image/png" },
     ],
     apple: [
-      { url: "/icons/Gamers-Arc.png", sizes: "180x180", type: "image/png" },
+      { url: "/assets/logos/player-arcadia-logo.png", sizes: "180x180", type: "image/png" },
     ],
   },
   manifest: "/icons/site.webmanifest",
