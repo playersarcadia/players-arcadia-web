@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import "/globals.css";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import Analytics from "@/components/Analytics";
 
@@ -8,7 +8,8 @@ export const metadata: Metadata = {
     default: "Players Arcadia - Pro Esports Tournament Platform",
     template: "%s | Players Arcadia",
   },
-  description: "Pro-level tools for running seamless mobile esports tournaments with fast, effortless payouts across the continent. Join Players Arcadia today!",
+  description:
+    "Pro-level tools for running seamless mobile esports tournaments with fast, effortless payouts across the continent. Join Players Arcadia today!",
   keywords: [
     "esports",
     "gaming tournaments",
@@ -26,19 +27,23 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
+  ),
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "/",
     title: "Players Arcadia - Pro Esports Tournament Platform",
-    description: "Pro-level tools for running seamless mobile esports tournaments with fast, effortless payouts across the continent.",
+    description:
+      "Pro-level tools for running seamless mobile esports tournaments with fast, effortless payouts across the continent.",
     siteName: "Players Arcadia",
   },
   twitter: {
     card: "summary_large_image",
     title: "Players Arcadia - Pro Esports Tournament Platform",
-    description: "Pro-level tools for running seamless mobile esports tournaments with fast, effortless payouts across the continent.",
+    description:
+      "Pro-level tools for running seamless mobile esports tournaments with fast, effortless payouts across the continent.",
     creator: "@playersarcadia",
   },
   robots: {
@@ -53,11 +58,9 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: [
-      { url: "/icons/Gamers-Arc.png", sizes: "any", type: "image/png" },
-    ],
+    icon: [{ url: "/icons/gamersarc.svg", sizes: "any", type: "image/svg" }],
     apple: [
-      { url: "/icons/Gamers-Arc.png", sizes: "180x180", type: "image/png" },
+      { url: "/icons/gamersarc.svg", sizes: "180x180", type: "image/svg" },
     ],
   },
   manifest: "/icons/site.webmanifest",
@@ -76,7 +79,7 @@ export default function RootLayout({
     name: "Players Arcadia",
     description: "Pro-level tools for running seamless mobile esports tournaments with fast, effortless payouts across the continent.",
     url: baseUrl,
-    logo: `${baseUrl}/icons/Gamers-Arc-white.png`,
+    logo: `${baseUrl}/icons/gamersarc-white.svg`,
     sameAs: [
       "https://twitter.com/playersarcadia",
       "https://facebook.com/playersarcadia",
