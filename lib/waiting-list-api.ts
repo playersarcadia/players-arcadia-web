@@ -3,18 +3,7 @@
  * Uses the same CSRF cookie flow as other frontends when the API runs with CSRF enabled.
  */
 
-const getApiBase = (): string => {
-  const raw = process.env.NEXT_PUBLIC_API_URL?.trim() || "";
-  return raw.replace(/\/$/, "");
-};
-
-function versionedApiPath(path: string): string {
-  const prefix = (process.env.NEXT_PUBLIC_API_PATH_PREFIX ?? "/api/v1").replace(/\/$/, "");
-  const p = path.startsWith("/") ? path : `/${path}`;
-  if (!prefix) return p;
-  if (p === prefix || p.startsWith(`${prefix}/`)) return p;
-  return `${prefix}${p}`;
-}
+import { getPublicApiOrigin, publicVersionedApiUrl } from "@/lib/public-api";
 
 function readCsrfCookie(): string | null {
   if (typeof document === "undefined") return null;
@@ -22,8 +11,8 @@ function readCsrfCookie(): string | null {
   return row ? decodeURIComponent(row.split("=").slice(1).join("=")) : null;
 }
 
-async function bootstrapCsrfCookie(apiBase: string): Promise<void> {
-  await fetch(`${apiBase}/`, {
+async function bootstrapCsrfCookie(apiOrigin: string): Promise<void> {
+  await fetch(`${apiOrigin}/`, {
     method: "GET",
     credentials: "include",
     cache: "no-store",
@@ -58,12 +47,12 @@ export type JoinWaitingListResult =
  * 201 = created; 409 = email already on the list; CSRF header when API enforces it.
  */
 export async function joinWaitingList(email: string): Promise<JoinWaitingListResult> {
-  const apiBase = getApiBase();
-  if (!apiBase) {
+  const apiOrigin = getPublicApiOrigin();
+  if (!apiOrigin) {
     return { ok: false, message: "Service is not configured. Please try again later." };
   }
 
-  await bootstrapCsrfCookie(apiBase);
+  await bootstrapCsrfCookie(apiOrigin);
   const csrf = readCsrfCookie();
   const headers: Record<string, string> = {
     "Content-Type": "application/json",
@@ -74,7 +63,7 @@ export async function joinWaitingList(email: string): Promise<JoinWaitingListRes
 
   let res: Response;
   try {
-    res = await fetch(`${apiBase}${versionedApiPath("/waiting_list/join-waiting-list")}`, {
+    res = await fetch(publicVersionedApiUrl("/waiting_list/join-waiting-list"), {
       method: "POST",
       credentials: "include",
       headers,

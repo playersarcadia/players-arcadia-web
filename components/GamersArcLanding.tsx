@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import WaitingListModal from "@/components/WaitingListModal";
+import { getPublicApiDocsUrl, getPublicApiOrigin } from "@/lib/public-api";
 import { migrateWaitlistModalStorage, WAITLIST_MODAL_STORAGE_KEY } from "@/lib/waiting-list-api";
 
 export default function GamersArcLanding() {
@@ -47,9 +48,9 @@ export default function GamersArcLanding() {
       e.preventDefault();
       setWaitlistOpen(true);
     } else {
-      // In dev, go to API URL + /users
+      // Same host as API: users app at /users (not under /api/v1).
       e.preventDefault();
-      const baseUrl = process.env.NEXT_PUBLIC_API_URL;
+      const baseUrl = getPublicApiOrigin();
       if (baseUrl) {
         window.location.assign(`${baseUrl}/users`);
       } else {
@@ -137,6 +138,7 @@ export default function GamersArcLanding() {
   }, []);
 
   const closeMenu = () => setMenuOpen(false);
+  const apiDocsUrl = getPublicApiDocsUrl();
 
   return (
     <main id="main-content" tabIndex={-1} className="gamers-arc-landing min-h-screen">
@@ -605,7 +607,14 @@ export default function GamersArcLanding() {
             <li><a href="#">FAQ</a></li>
             <li><a href="#">Fair Play Policy</a></li>
             <li><a href="#">Contact</a></li>
-            <li><a href="/docs">API Docs</a></li>
+            <li>
+              <a
+                href={apiDocsUrl ?? "#"}
+                {...(apiDocsUrl ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              >
+                API Docs
+              </a>
+            </li>
           </ul>
         </div>
       </div>

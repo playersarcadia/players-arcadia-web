@@ -82,10 +82,4 @@ describe('GamersArcLanding - Waitlist Modal Behavior', () => {
     const modal = screen.queryByTestId("waitlist-modal");
     expect(modal).not.toBeInTheDocument();
   });
-  // Fast-forward time to simulate the 900ms delay
-  jest.advanceTimersByTime(1000);
-
-  // Modal should NOT be present
-  const modal = screen.queryByTestId("waitlist-modal");
-  expect(modal).not.toBeInTheDocument();
 });
