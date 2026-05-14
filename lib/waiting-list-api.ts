@@ -52,7 +52,12 @@ export async function joinWaitingList(email: string): Promise<JoinWaitingListRes
     return { ok: false, message: "Service is not configured. Please try again later." };
   }
 
-  await bootstrapCsrfCookie(apiOrigin);
+  // try {
+  //   await bootstrapCsrfCookie(apiOrigin);
+  // } catch {
+  //   return { ok: false, message: "Network error. Check your connection and try again." };
+  // }
+
   const csrf = readCsrfCookie();
   const headers: Record<string, string> = {
     "Content-Type": "application/json",
